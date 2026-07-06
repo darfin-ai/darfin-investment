@@ -82,6 +82,14 @@ async def analyze_portfolio(
 
     prompt = build_portfolio_prompt(metrics=metrics, report=report)
     analysis = await generate_analysis(prompt)
+    # Fallback: if AI returns empty, generate a short summary so UI doesn't show an empty box
+    if not analysis or (isinstance(analysis, str) and not analysis.strip()):
+        nickname = payload.nickname or report.get("nickname") or "사용자"
+        label = report.get("label") or "-"
+        label_reason = report.get("labelReason") or ""
+        advice_items = [str(item.get("t")) for item in (report.get("adviceTop3") or []) if item.get("t")]
+        advice_text = ", ".join(advice_items) if advice_items else "특별한 권장사항이 없어요"
+        analysis = f"{nickname}님의 내 주식 진단: {label}. {label_reason} 주요 권장사항: {advice_text}."
     report_id = None
     db_error = None
 

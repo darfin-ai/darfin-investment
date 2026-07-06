@@ -52,12 +52,26 @@ Calculated metrics:
 Existing rule-based report:
 {_format_mapping(report)}
 
-Write a concise Korean report with this structure:
-1. 핵심 진단: 2~3문장
-2. 행동 패턴 해석
-3. 리스크 해석
-4. 수익률 해석
-5. 다음 행동 제안 3가지
+Write a warm, polished Korean report using this exact Markdown-like structure:
+
+### 한눈에 보는 진단
+2 short sentences. Wrap the single most important diagnosis in **bold**.
+
+### 지금 가장 중요한 포인트
+- **포인트 이름**: one practical interpretation based on the metrics.
+- **포인트 이름**: one practical interpretation based on the metrics.
+- **포인트 이름**: one practical interpretation based on the metrics.
+
+### 다음 리밸런싱 때 볼 것
+- **체크할 것**: concrete action for simulated-investment learning.
+- **체크할 것**: concrete action for simulated-investment learning.
+- **체크할 것**: concrete action for simulated-investment learning.
+
+Style rules:
+- Keep it friendly and modern, not stiff.
+- Use **bold** only for important labels, numbers, or warnings.
+- Avoid long paragraphs. Prefer readable short lines.
+- Do not use tables.
 
 Important:
 - Do not claim certainty.

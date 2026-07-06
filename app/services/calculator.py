@@ -387,7 +387,7 @@ def build_portfolio_report(metrics: dict[str, Any], nickname: str | None = None)
         + "예요."
     )
     if _num(risk.get("lossStockRatio")) > 50:
-        risk_text += f" 보유 종목의 {_num(risk.get('lossStockRatio')):.0f}%가 평가손실 상태라 포트 점검이 필요해요."
+        risk_text += f" 보유 종목의 {_num(risk.get('lossStockRatio')):.0f}%가 평가손실 상태라 내 주식 점검이 필요해요."
 
     if sector_concentration > 40:
         risk_advice = f"{top_sector_name} 외 업종으로 분산해 섹터 쏠림을 완화하세요."
