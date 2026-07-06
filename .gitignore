@@ -1,59 +1,32 @@
-# Build output
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+env/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Test / cache
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Build
 build/
-target/
-bin/
-out/
-*.class
-*.war
-*.ear
+dist/
+*.egg-info/
 
-# Tomcat / servlet runtime files
-logs/
-temp/
-work/
-localhost.*.log
-catalina*.log
-host-manager.*.log
-manager.*.log
-
-# Eclipse / Java IDE
-.classpath
-.project
-.settings/
-.metadata/
-.recommenders/
-.apt_generated/
-.factorypath
-
-# IntelliJ IDEA
-.idea/
-*.iml
-
-# VS Code
-.vscode/
-
-# Maven / Gradle caches
-build.gradle
-/.gradle/
-
-# OS files
+# IDE / OS
 .DS_Store
 Thumbs.db
-
-# lib
-**/webapp/WEB-INF/lib/*.jar
-
-# Gradle Wrapper
-gradlew
-gradlew.bat
-gradle/wrapper/gradle-wrapper.jar
-gradle/wrapper/gradle-wrapper.properties
-
-# Gradle Build Output
-.build/
-.gradle/
-build.gradle.kts
-settings.gradle.kts
-
-# 보안! 절대 커밋 금지
-.env
+.idea/
+.vscode/
