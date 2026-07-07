@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.core.db import settings
 from app.routers.analysis import router as analysis_router
 
 app = FastAPI(
@@ -8,10 +9,9 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# CORS — React 개발 서버(localhost:5173)에서 호출 가능
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=settings.cors_origin_list,
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
