@@ -4,7 +4,7 @@ from fastapi import APIRouter
 from pydantic import BaseModel, Field
 
 from app.services.calculator import analyze_portfolio_state, build_portfolio_report, calculate_metrics
-from app.services.gemini_client import generate_analysis
+from app.services.gemini_client import generate_analysis, generate_analysis_with_usage
 from app.services.prompt_builder import build_analysis_prompt, build_portfolio_prompt
 
 
@@ -49,7 +49,7 @@ async def analyze_company(payload: AnalysisRequest) -> AnalysisResponse:
         financials=payload.financials,
         metrics=metrics,
     )
-    analysis = await generate_analysis(prompt)
+    analysis, _ = await generate_analysis_with_usage(prompt)
 
     return AnalysisResponse(
         ticker=payload.ticker.upper(),
@@ -69,7 +69,7 @@ async def analyze_portfolio(payload: PortfolioAnalysisRequest) -> PortfolioAnaly
         report = payload.report
 
     prompt = build_portfolio_prompt(metrics=metrics, report=report)
-    analysis = await generate_analysis(prompt)
+    analysis, _ = await generate_analysis_with_usage(prompt)
     # Fallback: if AI returns empty, generate a short summary so UI doesn't show an empty box
     if not analysis or (isinstance(analysis, str) and not analysis.strip()):
         nickname = payload.nickname or report.get("nickname") or "사용자"
