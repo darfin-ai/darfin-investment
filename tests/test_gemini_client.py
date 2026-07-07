@@ -36,6 +36,19 @@ class GeminiClientTests(unittest.IsolatedAsyncioTestCase):
             },
         )
 
+    async def test_generate_analysis_with_usage_returns_none_when_api_fails(self) -> None:
+        with patch("app.services.gemini_client.genai.configure"), patch(
+            "app.services.gemini_client.genai.GenerativeModel"
+        ) as model_cls, patch("app.services.gemini_client.settings") as settings:
+            settings.gemini_api_key = "test-key"
+            settings.gemini_model = "gemini-1.5-flash"
+            model_cls.return_value.generate_content.side_effect = RuntimeError("api failed")
+
+            analysis, usage = await generate_analysis_with_usage("프롬프트")
+
+        self.assertIsNone(analysis)
+        self.assertIsNone(usage)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -43,4 +43,8 @@ async def generate_analysis_with_usage(prompt: str) -> tuple[str | None, dict[st
 
         return response.text or "", usage
 
-    return await asyncio.to_thread(_generate)
+    try:
+        return await asyncio.to_thread(_generate)
+    except Exception:
+        logger.exception("Gemini analysis generation failed")
+        return None, None
